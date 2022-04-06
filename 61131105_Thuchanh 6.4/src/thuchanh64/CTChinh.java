@@ -5,8 +5,9 @@ package thuchanh64;
 
 				public class CTChinh {
 					
-					public static void main (String[] args) throws IOExeption{
+					public static void main (String[] args) throws IOExeption {
 						// mo cong va bat dau nghe
+						
 						ServerSocket socketServer = new ServerSocket(9999);
 						System.out.println("i'm listening on 9999 port....");
 						//
@@ -16,7 +17,7 @@ package thuchanh64;
 							id ++;
 							socket socket;
 							
-							Module fileTask = new Module(socket, id);
+							server fileTask = new server(socket, id);
 							fileTask.start();
 						}
 					}

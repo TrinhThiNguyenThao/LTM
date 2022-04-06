@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 
 import java.io.BufferedWriter;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.io.InputStreamReader;
@@ -18,11 +19,8 @@ import java.util.Scanner;
 
 public class Client {
 
-		private static final BufferedReader BuffRead = null;
 
-
-
-		public static void main(String[] args) {
+		public static void main(String[] args) throws IOException {
 
 			Socket soc;
 
@@ -32,27 +30,19 @@ public class Client {
 
 				System.out.println("Connected! \n");
 
-				
-
 				InputStream in = soc.getInputStream();
 
 				InputStreamReader inReader = new InputStreamReader(in);
 
 				BufferedReader buffRead = new BufferedReader(inReader);
-
 				
+				 OutputStream osToClient = soc.getOutputStream();				
 
-				 OutputStream osToClient = soc.getOutputStream();
+				OutputStream osToClient1;
 
-				
-
-				OutputStream osToClient;
-
-				OutputStreamWriter write2Client = new OutputStreamWriter(osToClient);
+				OutputStreamWriter write2Client = new OutputStreamWriter(osToClient1);
 
 				 BufferedWriter buffWrite = new BufferedWriter(write2Client);
-
-			
 
 				 Scanner banPhim = new Scanner(System.in);
 
@@ -63,31 +53,27 @@ public class Client {
 					 System.out.println("\n Client:");
 
 					 String chuoiGui = banPhim.nextLine();
-
-					 
-
+					
 					 buffWrite.write(chuoiGui+"\n");
 
-					 buffWrite.flush();
+					 buffWrite.flush();				 
 
-					 
-
-					 String chuoiNhan = BuffRead.readLine();
+					 String chuoiNhan = BuffR.readLine();
 
 					 System.out.print("Server:"+ chuoiNhan);
 
-					 
-
-					 if(chuoiGui.equals("10")) break;
+					 if(chuoiGui.equals("0")) break;
 
 				 }
 
-				 socket.close();
+				 soc .close();
 			}catch(Exception e)
+			
 			{
 			System.out.println(e.getMessage()); 
 			}
+			
 		}
 
-			}
+	}
 

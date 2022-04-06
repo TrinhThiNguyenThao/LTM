@@ -2,101 +2,114 @@ package thuchanh64;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.Socket;
 
-public class server {
-	public class  thuchanh64 extends Thread{
+	public class  server extends Thread {
 		Socket socketClient;
 		int id = -1;
+		private BufferedWriter buffWrite;
 		
-		public thuchanh64 (socket socketCLient, int id)
+		public server (Socket socketCLient, int id)
 		{
 			//super ();
-			this.socketCLient = socketClient;
+			this.socketClient = socketClient;
 			this.id = id;
 		}
-		void GuiFile(String tenFile) throws IOException
+		void GuiFile(String tenFile , BufferedWriter bf) throws IOException
 		{
 		// lay ve nhap tu file
+			
 		FileReader fr = new FileReader( tenFile);
 		BufferedReader buffRead = new BufferedReader(fr);
+		
 		// lay luong ve xuat (de gui ve client)
-		outputStream osToClient = socketClient.getoutputstream();
-		 outputStreamWriter write2Client = new  outputStreamWriter(osToClient);
+		OutputStream osToClient = socketClient.getOutputStream();
+		 OutputStreamWriter write2Client = new  OutputStreamWriter(osToClient);
+		 
 		// doc tung dong
 		String line;
 		while((line = buffRead.readLine()) != null)
 		{
+		buffWrite = null;
 		// gui ve
 		buffWrite.write(line);
-		buffwrite.flush();
+		buffWrite.flush();
 		}
 		fr.close();
 		}
 	
+	
+	
 	public void run ()
 	 {
 		 try {
-			 Object socketClient;
+			 
 			System.out.println( socketClient.getInetAddress().getHostAddress());
 			System.out.print(id);
+			OutputStream osToClient = null ;
 			// 
-			OutputStreamWriter write2Client = new OutputStreamWriter(osToClient);
+			OutputStreamWriter write2Client = new OutputStreamWriter( osToClient);
 			BufferedWriter buffdWriter = new BufferedWriter(write2Client);
 			InputStream in = socketClient.getInputStream();
 			InputStreamReader inReader = new InputStreamReader(in);
 			BufferedReader buffRead = new BufferedReader(inReader);
 			//============ 
 				while(true) {
+					BufferedReader buffR = null;
 					String chuoiNhan=buffR.readLine();
 					System.out.print("\n"+chuoiNhan);
 					
 					if(chuoiNhan.equals("1")) {
-						guifile("D:\\1.txt");
+						GuiFile("D:\\1.txt", buffdWriter);
 					}
 					else if(chuoiNhan.equals("2")) {
-						guifile("D:\\2.txt");
-						buffW.flush();
+						GuiFile("D:\\2.txt", buffdWriter);
+						//buffW.flush();
 					}
 					else if(chuoiNhan.equals("3")) {
-						guifile("D:\\3.txt");
-						buffW.flush();
+						GuiFile("D:\\3.txt", buffdWriter);
+						//buffW.flush();
 					}
 					else if(chuoiNhan.equals("4")) {
-						guifile("D:\\4.txt");
-						buffW.flush();
+						GuiFile("D:\\4.txt", buffdWriter);
+						//buffW.flush();
 					}
 					else if(chuoiNhan.equals("5")) {
-						guifile("D:\\5.txt");
-						buffW.flush();
+						GuiFile("D:\\5.txt", buffdWriter);
+						//buffW.flush();
 					}
 					else if(chuoiNhan.equals("6")) {
-						guifile("D:\\6.txt");
-						buffW.flush();
+						GuiFile("D:\\6.txt", buffdWriter);
+						//buffW.flush();
 					}
 					else if(chuoiNhan.equals("7")) {
-						guifile("D:\\7.txt");
-						buffW.flush();
+						GuiFile("D:\\7.txt", buffdWriter);
+						//buffW.flush();
+					}
 						else if(chuoiNhan.equals("8")) {
-							guifile("D:\\8.txt");
-							buffW.flush();
+							GuiFile("D:\\8.txt", buffdWriter);
+							//buffW.flush();
 						}
 						else if(chuoiNhan.equals("9")) {
-							guifile("D:\\9.txt");
-							buffW.flush();
+							GuiFile("D:\\9.txt", buffdWriter);
+							//buffW.flush();
 						}
 						else if(chuoiNhan.equals("10")) {
-							guifile("D:\\10.txt");
-							buffW.flush();
+							GuiFile("D:\\10.txt", buffdWriter);
+							//buffW.flush();
 						}
 			}
-			socketCLient.close();
-		 }catch (Exeption e) {
+			//socketCLient.close();
+		 }    catch ( IOException e) {
 			 System.out.println(e.getMessage());
 		 
 }
 }
-
+	}
 	
