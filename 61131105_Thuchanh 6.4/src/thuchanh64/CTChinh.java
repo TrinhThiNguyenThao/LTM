@@ -1,0 +1,24 @@
+package thuchanh64;
+
+		import java.net.ServerSocket;
+		import java.net.Socket;
+
+				public class CTChinh {
+					
+					public static void main (string[] args) throws IOExeption{
+						// mo cong va bat dau nghe
+						ServerSocket socketServer = new ServerSocket(9999);
+						System.out.println("i'm listening on 9999 port....");
+						//
+						int id = 0;
+						while(true) {
+							Socket s = socketServer.accept();
+							id ++;
+							socket socket;
+							
+							MoFile fileTask = new MoFile(socket, id);
+							fileTask.start();
+						}
+					}
+				}
+				   
