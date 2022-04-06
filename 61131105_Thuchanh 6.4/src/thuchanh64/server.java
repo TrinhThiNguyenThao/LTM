@@ -56,12 +56,18 @@ public class server {
 					if(chuoiNhan.equals("1")) {
 						guifile("D:\\1.txt");
 					}
+					else if(chuoiNhan.equals("2")) {
+						guifile("D:\\2.txt");
+						buffW.flush();
 			}
 			socketCLient.close();
 		 }catch (Exeption e) {
 			 System.out.println(e.getMessage());
 			}
-	}
+		 }
+	 
 	}
 }
+}
+
 	
